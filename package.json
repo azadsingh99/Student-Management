@@ -1,0 +1,23 @@
+{
+  "name": "student-management-system",
+  "version": "1.0.0",
+  "description": "Student Management System with React frontend and Express backend",
+  "main": "index.js",
+  "scripts": {
+    "start": "cd backend && npm start",
+    "install": "cd backend && npm install",
+    "build": "cd backend && npm install"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "keywords": [
+    "react",
+    "express",
+    "postgresql",
+    "neon",
+    "student-management"
+  ],
+  "author": "",
+  "license": "MIT"
+}

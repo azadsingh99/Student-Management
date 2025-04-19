@@ -26,6 +26,7 @@ const StudentForm = () => {
     marks: [{ subject: '', score: 0 }]
   });
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (id) {
       fetchStudent();
