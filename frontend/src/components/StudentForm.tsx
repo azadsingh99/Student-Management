@@ -14,7 +14,7 @@ interface StudentData {
   marks: Mark[];
 }
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+const API_URL = process.env.REACT_APP_API_URL ||'https://student-management-cw5w.onrender.com/';
 
 const StudentForm = () => {
   const navigate = useNavigate();
