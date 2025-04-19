@@ -82,9 +82,23 @@ const StudentForm = () => {
   const handleMarkChange = (index: number, field: keyof Mark, value: string) => {
     const updatedMarks = [...formData.marks];
     if (field === 'score') {
-      const numValue = Number(value);
-      if (numValue < 0) return; // Prevent negative scores
-      if (numValue > 100) return; // Prevent scores above 100
+      // Handle empty input or parse the number
+      let numValue: number;
+      
+      // Check if the input is just a minus sign or empty
+      if (value === '' || value === '-') {
+        numValue = 0;
+      } else {
+        // Ensure we have a valid number by removing non-numeric characters except digits
+        // This will prevent NaN by filtering out invalid characters
+        const cleanValue = value.replace(/[^0-9]/g, '');
+        numValue = cleanValue === '' ? 0 : Number(cleanValue);
+      }
+      
+      // Validate the range
+      if (numValue < 0) numValue = 0; // Convert negative to 0
+      if (numValue > 100) numValue = 100; // Cap at 100
+      
       updatedMarks[index] = {
         ...updatedMarks[index],
         [field]: numValue
@@ -188,12 +202,14 @@ const StudentForm = () => {
                 </div>
                 <div className="col">
                   <input
-                    type="number"
+                    type="text"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
                     className="form-control"
                     placeholder="Score (0-100)"
                     min="0"
                     max="100"
-                    value={mark.score}
+                    value={mark.score === 0 ? '' : mark.score}
                     onChange={(e) => handleMarkChange(index, 'score', e.target.value)}
                     required
                   />
