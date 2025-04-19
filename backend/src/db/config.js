@@ -1,11 +1,10 @@
 const { Pool } = require('pg');
 require('dotenv').config();
-
-// Use the connection string directly instead of individual parameters
+ 
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
     ssl: {
-        rejectUnauthorized: false // Required for Neon PostgreSQL
+        rejectUnauthorized: false //I have done this for the NeonDB 
     }
 });
 

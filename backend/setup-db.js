@@ -12,20 +12,17 @@ async function setupDatabase() {
     const pool = new Pool({
       connectionString: process.env.DATABASE_URL,
       ssl: {
-        rejectUnauthorized: false // Required for Neon PostgreSQL
+        rejectUnauthorized: false  
       }
     });
 
     console.log('Connected to Neon PostgreSQL database');
-
-    // Get a client from the pool
+ 
     const client = await pool.connect();
     
-    try {
-      // Start a transaction
+    try { 
       await client.query('BEGIN');
-      
-      // Drop existing tables if they exist (for clean setup)
+       
       console.log('Dropping existing tables if they exist...');
       await client.query('DROP TABLE IF EXISTS marks CASCADE');
       await client.query('DROP TABLE IF EXISTS students CASCADE');

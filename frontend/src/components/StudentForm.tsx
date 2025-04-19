@@ -14,7 +14,7 @@ interface StudentData {
   marks: Mark[];
 }
 
-const API_URL = process.env.REACT_APP_API_URL ||'https://student-management-cw5w.onrender.com/';
+const API_URL = process.env.REACT_APP_API_URL || 'https://student-management-cw5w.onrender.com/api';
 
 const StudentForm = () => {
   const navigate = useNavigate();
@@ -25,8 +25,7 @@ const StudentForm = () => {
     email: '',
     marks: [{ subject: '', score: 0 }]
   });
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+ 
   useEffect(() => {
     if (id) {
       fetchStudent();
@@ -46,21 +45,19 @@ const StudentForm = () => {
     }
   };
 
-  const validateForm = () => {
-    // Check if name and email are not empty
+  const validateForm = () => { 
     if (!formData.name.trim() || !formData.email.trim()) {
       Swal.fire('Error', 'Name and email are required', 'error');
       return false;
     }
-
-    // Validate email format
+ 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
       Swal.fire('Error', 'Please enter a valid email address', 'error');
       return false;
     }
 
-    // Validate marks
+  
     for (const mark of formData.marks) {
       if (!mark.subject.trim()) {
         Swal.fire('Error', 'Subject name is required for all marks', 'error');
